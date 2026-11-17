@@ -1,6 +1,3 @@
-
-env.example
-
 #Virtual enviroment
 .venv/
 venv
@@ -8,13 +5,3 @@ venv
 #Enviroment variables and secrets
 .env
 .env.*
-
-#Python cache filies
-__pycache__/
-*.py[cod]
-
-#Testing
-.pytest_cache/
-
-#IDE setting
-.idea/
