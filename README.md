@@ -1,2 +1,0 @@
-# Talentbridge
-Personal Project 
