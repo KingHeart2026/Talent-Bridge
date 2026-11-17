@@ -11,4 +11,33 @@ class CandidateProfile(Base):
         index=True
     )
 
-    user_id: Mapped[int] = mapped_column()
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        unique=True,
+        nullable=False
+    )
+
+    headine: Mapped[str | None] = mapped_column(
+        String(200),
+        nullable=True
+    )
+
+    years_experience: Mapped[int] = mapped_column(
+        Integer,
+        default=0
+    )
+
+    location: Mapped[str | None] = mapped_column(
+        String(150),
+        nullable=True
+    )
+
+    cv_path: Mapped[str | None] = mapped_column(
+        String(500),
+        nullable=True
+    )
+
+    user = relationship(
+        "user",
+        back_populates="candidate_profile"
+    )
