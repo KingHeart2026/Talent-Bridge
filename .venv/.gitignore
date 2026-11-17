@@ -1,0 +1,7 @@
+DATABASE_URL=postgresql+psycopg2://postgres:wisdom&understanding@localhost:5432/Talentbridge
+
+SECRET_KEY=9853b7804a0beac40c1ee08683d85b21a07830cc79cb9beffbb744587b3820bf
+
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=30
