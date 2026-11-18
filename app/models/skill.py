@@ -18,10 +18,10 @@ class Skill(Base):
     name: Mapped[str] = mapped_column(
         String(100),
         unique=True,
-        nullble=False
+        nullable=False
     )
 
-    class CandidateSkil(Base):
+    class CandidateSkill(Base):
         __tablename__ = "candidate_skills"
 
         __table_args__ = (
@@ -38,10 +38,10 @@ class Skill(Base):
 
         candidate_id: Mapped[int] = mapped_column(
             ForeignKey("candidate_profiles.id"),
-            nullble=False
+            nullable=False
         )
 
         Skill_id: Mapped[int] = mapped_column(
-            ForeignKey("skill_id"),
+            ForeignKey("skill.id"),
             nullble=False
         )
