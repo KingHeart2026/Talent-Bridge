@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     model_config = SettingsConfigDict(
-        venv_file=".venv",
+        env_file=".env",
         extra="ignore"
     )
 

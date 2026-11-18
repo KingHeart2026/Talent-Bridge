@@ -38,6 +38,6 @@ class CandidateProfile(Base):
     )
 
     user = relationship(
-        "user",
+        "User",
         back_populates="candidate_profile"
     )

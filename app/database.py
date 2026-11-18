@@ -5,7 +5,7 @@ from app.config import settings
 
 #create database engine
 engine = create_engine(
-    settings.DATABASE_URL,     #this manages communication between your python appication and ostgreSQL
+    settings.DATABASE_URL,     #this manages communication between your python appication and postgreSQL
     pool_pre_ping=True         #this checks that your connection is still usable before SQLAlchemy gives it to your application
 )
 
