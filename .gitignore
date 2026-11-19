@@ -1,6 +1,6 @@
 #Virtual enviroment
-.venv/
-venv
+env/
+env
 
 #Enviroment variables and secrets
 .env

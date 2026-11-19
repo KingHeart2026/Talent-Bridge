@@ -56,3 +56,14 @@ pip install pwdlib[argon2]
 pip install python-multipart
 pip install pytest httpx
 pip install email-validator
+
+Thing that i have imported:
+pip install fastapi uvicorn
+pip install sqlalchemy psycopg2-binary
+pip install alembic
+pip install pydantic-settings
+pip install python-jose[cryptography]
+pip install pwdlib[argon2]
+pip install python-multipart
+pip install pytest httpx
+pip install email-validator
