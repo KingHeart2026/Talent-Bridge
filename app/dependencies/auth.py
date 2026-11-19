@@ -7,7 +7,7 @@ from app.config import settings
 from app.models.user import User
 
 
-oauth2_scheme = OAuth2PasswordBearer(
+oauth2_scheme = OAuth2PasswordBearer(        #oAuth2PasswordBearer tells FastAPI where to expect the access token
     tokenUrl="/api/v1/auth/login"
 )
 
