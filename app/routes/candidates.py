@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/me", response_model=CandidateProfileResponse)
-def get_candidate_profile(current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def get_candidate_profile(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     
     if current_user.role != UserRole.candidate:
         raise HTTPException(
