@@ -5,7 +5,7 @@ from typing import Literal
 class UserRegister(BaseModel):
     name: str = Field(min_length=2, max_length=100)
     email: EmailStr
-    password: str = Field(min_length=8, max_digits=128)
+    password: str = Field(min_length=7, max_length=128)
     role: UserRole
 
 class UserResponse(BaseModel):

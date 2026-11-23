@@ -21,27 +21,24 @@ class Skill(Base):
         nullable=False
     )
 
-    class CandidateSkill(Base):
-        __tablename__ = "candidate_skills"
+class CandidateSkill(Base):
+    __tablename__ = "candidate_skills"
 
-        __table_args__ = (
-            UniqueConstraint(
-                "cadidate_id",
-                "skill_id"
-            ),
-        )
+    __table_args__ = (
+        UniqueConstraint("candidate_id", "skill_id"),
+    )
 
-        id: Mapped[int] = mapped_column(
-            Integer,
-            primary_key=True
-        )
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
 
-        candidate_id: Mapped[int] = mapped_column(
-            ForeignKey("candidate_profiles.id"),
-            nullable=False
-        )
+    candidate_id: Mapped[int] = mapped_column(
+        ForeignKey("candidate_profiles.id"),
+        nullable=False
+    )
 
-        Skill_id: Mapped[int] = mapped_column(
-            ForeignKey("skill.id"),
-            nullble=False
-        )
+    skill_id: Mapped[int] = mapped_column(
+        ForeignKey("skills.id"),
+        nullable=False
+    )

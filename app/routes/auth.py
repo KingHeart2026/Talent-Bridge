@@ -4,6 +4,8 @@ from app.database import get_db
 from app.models.user import User
 from app.schemas.user import UserRegister, UserResponse
 from app.services.auth_service import(hash_password, verify_password, create_access_token)
+from fastapi.security import OAuth2PasswordRequestForm
+from app.models.user import User, UserRole
 
 router = APIRouter(
     prefix="/auth",
@@ -25,7 +27,7 @@ def register_user(user_data: UserRegister, db: Session = Depends(get_db)):
         name=user_data.name,
         email=user_data.email,
         hashed_password=hash_password(user_data.password),
-        role=user_data.role
+        role=UserRole(user_data.role)
     )
 
     db.add(new_user)
@@ -35,10 +37,10 @@ def register_user(user_data: UserRegister, db: Session = Depends(get_db)):
 
 
 @router.post("/login")
-def login_user(email: str, password: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == email).first()
+def login_user(form_date: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == form_date.username).first()
 
-    if not user or not verify_password(password, user.hashed_password):
+    if not user or not verify_password(form_date.password, user.hashed_password):
         raise HTTPException(
             status_code=401,
             detail="Incorrect email or password"
@@ -50,6 +52,6 @@ def login_user(email: str, password: str, db: Session = Depends(get_db)):
             detail="Account is deactivated"
         )
 
-    access_token = create_access_token(user.id)
+    token = create_access_token(user.id)
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": token, "token_type": "bearer"}

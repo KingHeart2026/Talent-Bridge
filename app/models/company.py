@@ -30,7 +30,7 @@ class Company(Base):
     is_verified: Mapped[bool] = mapped_column(
         Boolean,
         default=False,
-        naullable=False
+        nullable=False
     )
 
     owner = relationship(

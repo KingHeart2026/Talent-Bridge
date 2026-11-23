@@ -11,17 +11,24 @@ class UserRole(str, enum.Enum):
     admin = "admin"
 
 class User(Base):
-    __tablename__ = "uers"
+    __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(
         Integer,
-        Primary_key=True,
+        primary_key=True,
         index=True
     )
 
     name: Mapped[str] = mapped_column(
         String(100),
         nullable=False
+    )
+
+    email: Mapped[str] = mapped_column(
+        String(255),
+        unique=True,
+        nullable=False,
+        index=True
     )
 
     hashed_password: Mapped[str] = mapped_column(
