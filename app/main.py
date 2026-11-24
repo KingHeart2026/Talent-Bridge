@@ -6,7 +6,7 @@ from app.routes import admin
 
 
 app = FastAPI(
-    title="TalentBridge API",
+    title="KING HEART TalentBridge API",
     description="Job Board and Applicant Tracking API",
     version="1.0.0"
 )

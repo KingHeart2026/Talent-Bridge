@@ -19,7 +19,7 @@ def register_user(user_data: UserRegister, db: Session = Depends(get_db)):
 
     if existing_user:
         raise HTTPException(
-            status_code=409,
+            status_code=status.HTTP_409_CONFLICT,
             detail="Email already registered"
         )
 
@@ -42,13 +42,13 @@ def login_user(form_date: OAuth2PasswordRequestForm = Depends(), db: Session = D
 
     if not user or not verify_password(form_date.password, user.hashed_password):
         raise HTTPException(
-            status_code=401,
+            status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
         )
 
     if not user.is_active:
         raise HTTPException(
-            status_code=403,
+            status_code=status.HTTP_403_FORBIDDEN,
             detail="Account is deactivated"
         )
 
