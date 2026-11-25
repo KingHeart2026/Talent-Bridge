@@ -37,3 +37,32 @@ class CandidateSkill(Base):
         ForeignKey("skills.id"),
         nullable=False
     )
+
+
+class JobSkill(Base):
+    __tablename__ = "job_skills"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "job_id",
+            "skill_id",
+            name="unique_job_skill"
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    job_id: Mapped[int] = mapped_column(
+        ForeignKey("jobs.id"),
+        nullable=False,
+        index=True
+    )
+
+    skill_id: Mapped[int] = mapped_column(
+        ForeignKey("skills.id"),
+        nullable=False,
+        index=True
+    )

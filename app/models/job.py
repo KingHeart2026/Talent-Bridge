@@ -1,4 +1,5 @@
-from sqlalchemy import (Integer, String, Text, ForeignKey, Boolean, DateTime)
+from sqlalchemy import (Integer, String, Text, ForeignKey, Boolean, DateTime, UniqueConstraint)
+from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
 from app.database import Base
@@ -61,8 +62,45 @@ class Job(Base):
         nullable=False
     )
 
-    created_at: Mapped[DateTime] = mapped_column(
+    created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=func.now(),
         nullable=False
     )
+
+
+class SavedJob(Base):
+    __tablename__ = "saved_jobs"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "candidate_id",
+            "job_id",
+            name="unique_saved_job"
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    candidate_id: Mapped[int] = mapped_column(
+        ForeignKey("candidate_profiles.id"),
+        nullable=False,
+        index=True
+    )
+
+    job_id: Mapped[int] = mapped_column(
+        ForeignKey("jobs.id"),
+        nullable=False,
+        index=True
+    )
+
+    saved_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
+
+    
