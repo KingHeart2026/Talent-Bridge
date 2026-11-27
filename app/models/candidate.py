@@ -17,7 +17,7 @@ class CandidateProfile(Base):
         nullable=False
     )
 
-    headine: Mapped[str | None] = mapped_column(
+    headline: Mapped[str | None] = mapped_column(
         String(200),
         nullable=True
     )

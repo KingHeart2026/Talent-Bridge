@@ -1,6 +1,6 @@
 from sqlalchemy import (Integer, String, Text, ForeignKey, Boolean, DateTime, UniqueConstraint)
 from datetime import datetime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column,relationship
 from sqlalchemy.sql import func
 from app.database import Base
 
@@ -14,11 +14,29 @@ class Job(Base):
         index=True
     )
 
-    company_id: Mapped[int] = mapped_column(
+    company_id: Mapped[int | None] = mapped_column(
         ForeignKey("companies.id"),
-        nullable=False,
+        nullable=True,
         index=True
     )
+
+    posted_by_user_id: Mapped[int] = mapped_column(
+            ForeignKey("users.id"),
+            nullable=False
+            )
+    
+    opportunity_type: Mapped[str] = mapped_column(
+        String(30),
+        nullable=False,
+        default="employment",
+        server_default="employment"
+    )
+    
+    posted_by = relationship(
+        "User",
+        foreign_keys=[posted_by_user_id]
+    )
+    
 
     title: Mapped[str] = mapped_column(
         String(150),

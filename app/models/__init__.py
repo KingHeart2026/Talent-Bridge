@@ -6,3 +6,4 @@ from app.models.user import User
 from app.models.job import Job, SavedJob
 from app.models.application import Application
 from app.models.event import ApplicationEvent
+from app.models.service import Service, ServiceApplication

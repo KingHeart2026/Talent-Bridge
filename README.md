@@ -67,3 +67,4 @@ pip install pwdlib[argon2]
 pip install python-multipart
 pip install pytest httpx
 pip install email-validator
+

@@ -51,7 +51,7 @@ class Application(Base):
         nullable=False
     )
 
-    note_for_awarness: Mapped[str] =mapped_column(
+    note_for_awarness: Mapped[str | None] =mapped_column(
             String(100),
             nullable=True
         )
